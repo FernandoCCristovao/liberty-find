@@ -1,0 +1,6 @@
+# Final de linha LF em tudo (as Lambdas rodam em Linux; evita diffs falsos no Windows)
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gz binary

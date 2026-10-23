@@ -1,0 +1,30 @@
+{
+  "jobs": [
+    {
+      "id": 1001,
+      "internal_job_id": 501,
+      "title": " Pessoa Engenheira de Dados Pleno ",
+      "updated_at": "2026-10-10T09:30:00-03:00",
+      "first_published": "2026-10-01T10:00:00-03:00",
+      "requisition_id": "REQ-1",
+      "location": { "name": "Remoto, Brasil" },
+      "absolute_url": "https://job-boards.greenhouse.io/exemplo/jobs/1001",
+      "language": "pt",
+      "company_name": "Empresa Exemplo",
+      "departments": [{ "id": 1, "name": "Dados", "child_ids": [], "parent_id": null }],
+      "offices": [{ "id": 2, "name": "Brasil" }],
+      "metadata": [],
+      "content": "&lt;p&gt;Vaga fict&amp;iacute;cia para testes.&amp;nbsp;Trabalho 100% remoto.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Python e SQL&lt;/li&gt;&lt;li&gt;AWS&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Ingl&amp;ecirc;s intermedi&amp;aacute;rio &amp;eacute; desej&amp;aacute;vel.&lt;/p&gt;"
+    },
+    {
+      "id": 1002,
+      "title": "AI Engineer",
+      "updated_at": "2026-10-11T12:00:00-03:00",
+      "location": { "name": "São Paulo, Brasil" },
+      "absolute_url": "https://job-boards.greenhouse.io/exemplo/jobs/1002",
+      "departments": [],
+      "content": "&lt;h2&gt;Sobre a vaga&lt;/h2&gt;&lt;p&gt;Construir agentes com LLM.&lt;/p&gt;"
+    }
+  ],
+  "meta": { "total": 2 }
+}

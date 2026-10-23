@@ -1,0 +1,79 @@
+[project]
+name = "liberty-find"
+version = "0.1.0"
+description = "Liberty Find: vagas que dão liberdade, a partir de fontes que permitem coleta."
+readme = "README.md"
+license = "FSL-1.1-ALv2"
+authors = [{ name = "Fernando Cristóvão" }]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "aws-lambda-powertools>=3.35,<4",
+    "httpx>=0.28,<0.29",
+    "pydantic>=2.14,<3",
+    "pyyaml>=6.0,<7",
+]
+
+[project.scripts]
+liberty = "liberty_find.cli:main"
+
+[dependency-groups]
+dev = [
+    "boto3>=1.43",
+    "boto3-stubs[s3]>=1.43",
+    "cfn-lint>=1.57",
+    "moto[s3]>=5.2",
+    "mypy>=2.4",
+    "poethepoet>=0.48",
+    "pre-commit>=4.6",
+    "pytest>=9.1",
+    "pytest-socket>=0.8",
+    "respx>=0.23",
+    "ruff>=0.17",
+    "types-pyyaml>=6.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.32"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/liberty_find"]
+
+# Tarefas do dia a dia: `uv run poe <tarefa>` (funciona igual no Windows, no Linux e no CI).
+[tool.poe.tasks]
+fmt = { sequence = [{ cmd = "ruff check --fix ." }, { cmd = "ruff format ." }], help = "Formata e corrige o que der" }
+lint = { sequence = [{ cmd = "ruff check ." }, { cmd = "ruff format --check ." }], help = "Lint e formatação" }
+typecheck = { cmd = "mypy src", help = "Checagem de tipos" }
+test = { cmd = "pytest", help = "Testes (sem rede)" }
+cfn = { cmd = "cfn-lint template.yaml", help = "Valida o template do SAM" }
+check = { sequence = ["lint", "typecheck", "test", "cfn"], help = "Tudo o que o CI roda" }
+requirements = { cmd = "uv export --frozen --no-dev --no-hashes --no-emit-project -o src/requirements.txt", help = "Gera src/requirements.txt para o sam build" }
+build = { sequence = ["requirements", { cmd = "sam build" }], help = "Empacota as Lambdas" }
+deploy = { cmd = "sam deploy --parameter-overrides AlertEmail=${ALERT_EMAIL}", envfile = ".env", help = "Publica a stack (só com aprovação humana; mostra o changeset antes)" }
+boards = { cmd = "liberty boards", help = "Lista as empresas e o estado de cada fonte" }
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+extend-exclude = [".aws-sam", "data"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "SIM", "RUF", "PT", "N", "C4", "RET"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["N802"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["moto.*", "respx.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --import-mode=importlib --disable-socket"

@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv sync:*)",
+      "Bash(uv run poe check)",
+      "Bash(uv run poe fmt)",
+      "Bash(uv run poe lint)",
+      "Bash(uv run poe test)",
+      "Bash(uv run poe typecheck)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run liberty:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Bash(uv run poe deploy)",
+      "Bash(uv run poe deploy:*)",
+      "Bash(sam deploy:*)",
+      "Bash(sam delete:*)",
+      "Bash(terraform apply:*)",
+      "Bash(terraform destroy:*)",
+      "Bash(terraform -chdir=infra/envs/dev apply:*)",
+      "Bash(terraform -chdir=infra/envs/dev destroy:*)",
+      "Bash(terraform -chdir=infra/envs/prod apply:*)",
+      "Bash(terraform -chdir=infra/envs/prod destroy:*)",
+      "Bash(aws s3 rm:*)",
+      "Bash(aws s3 rb:*)",
+      "Bash(aws s3api delete-object:*)",
+      "Bash(aws s3api delete-objects:*)",
+      "Bash(aws s3api delete-bucket:*)",
+      "Bash(aws cloudformation delete-stack:*)",
+      "Read(./.env)"
+    ]
+  }
+}

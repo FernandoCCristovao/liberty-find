@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Ferramentas
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# AWS SAM (até a migração para Terraform)
+.aws-sam/
+src/requirements.txt
+
+# Terraform e empacotamento das Lambdas
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.tfvars
+!*.tfvars.example
+
+# Airflow local, dbt e avaliações
+airflow/logs/
+dbt/target/
+dbt/logs/
+evals/**/texts/
+
+# Dados locais (liberty collect --local) e segredos
+data/
+.env
+*.pem
+
+# Power BI: só o formato PBIP (texto) entra no Git
+*.pbix
+.pbi/localSettings.json
+.pbi/cache.abf
+
+# Editor e sistema
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Claude Code: preferências pessoais
+.claude/settings.local.json

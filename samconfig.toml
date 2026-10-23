@@ -1,0 +1,17 @@
+# Configuração do `sam build` e do `sam deploy`. Nada pessoal aqui: o e-mail de alerta
+# entra no deploy por parâmetro (ver docs/operacao.md).
+version = 0.1
+
+[default.global.parameters]
+stack_name = "liberty-find"
+region = "us-east-1"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+tags = "project=\"liberty-find\""

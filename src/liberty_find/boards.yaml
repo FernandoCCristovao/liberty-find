@@ -1,0 +1,29 @@
+# Empresas acompanhadas. Uma linha por empresa em cada ATS.
+# Como achar o token e testar uma empresa nova: docs/dados/fontes.md ("Adicionar uma empresa").
+# Tokens conferidos nas APIs em 2026-10-12. Fonte sem implementação é pulada e aparece no relatório de saúde.
+
+boards:
+  # Greenhouse
+  - { source: greenhouse, token: quintoandar, company: QuintoAndar }
+  - { source: greenhouse, token: ifoodcarreiras, company: iFood }
+  - { source: greenhouse, token: clara, company: Clara }
+  - { source: greenhouse, token: ebanx, company: EBANX }
+  - { source: greenhouse, token: vtex, company: VTEX }
+  - { source: greenhouse, token: wildlifestudios, company: Wildlife Studios }
+  - { source: greenhouse, token: bancopan, company: Banco Pan }
+  - { source: greenhouse, token: ilia, company: ília }
+  - { source: greenhouse, token: rdstation, company: RD Station }
+  - { source: greenhouse, token: xpinc, company: XP Inc. }
+  - { source: greenhouse, token: c6bank, company: C6 Bank }
+
+  # Lever (fonte a implementar no Marco 1)
+  - { source: lever, token: ciandt, company: CI&T }
+  - { source: lever, token: neon, company: Neon }
+  - { source: lever, token: loadsmart, company: Loadsmart }
+
+  # Ashby (fonte a implementar no Marco 1)
+  - { source: ashby, token: nubank, company: Nubank }
+  - { source: ashby, token: enter-ai, company: Enter }
+
+  # Workable (fonte a implementar no Marco 1)
+  - { source: workable, token: bigdatacorp, company: BigDataCorp }
