@@ -30,6 +30,8 @@
 | nDCG@10 | Métrica de qualidade das 10 primeiras posições de um ranking, comparada com julgamentos humanos |
 | Relatório de saúde | `health.json`: estado de cada empresa na coleta do dia |
 | Workgroup | Configuração do Athena com limite de leitura por consulta e local dos resultados |
+| Projeto (AWS) | No cadastro novo da AWS, a conta do Liberty Find, com região fixa e políticas geridas pela AWS ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)) |
+| Limite de gasto | Teto mensal da conta no plano pago: ao chegar nele, a AWS pausa o projeto em vez de cobrar mais |
 | Projeção de partições | Recurso do Athena que acha as partições pelo padrão da chave, sem crawler |
 | Rótulo humano | Resposta certa anotada à mão, usada para medir a extração, o matching e o assistente |
 | Marco | Etapa do projeto que vale sozinha e fecha com critério de aceite (`docs/marcos/`) |

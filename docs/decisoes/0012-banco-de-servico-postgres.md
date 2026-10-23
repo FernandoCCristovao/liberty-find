@@ -1,6 +1,6 @@
 # ADR 0012: Banco de serviço e busca: Postgres no Neon, com pgvector e busca textual
 
-- Status: aceita
+- Status: aceita (região do Neon revista pelo [ADR 0024](0024-conta-aws-experiencia-nova-us-east-2.md))
 - Data: 2026-10-20
 
 ## Contexto

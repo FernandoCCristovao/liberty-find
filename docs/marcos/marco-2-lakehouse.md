@@ -58,6 +58,10 @@ Decisões: [ADR 0010](../decisoes/0010-lakehouse-iceberg-dbt.md),
 
 ### [ ] 2.5 Deploy pelo GitHub Actions com OIDC
 
+Antes: a conta atual nega criar o provedor OIDC ([ADR 0024](../decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)).
+Decidir num ADR entre ativar os recursos avançados da conta (irreversível) e outro caminho sem
+chave fixa.
+
 - Fazer: provedor OIDC do GitHub e papéis do IAM no Terraform (um só de leitura para `plan` nos pull
   requests e outro para `apply`, preso ao ambiente do GitHub com aprovação humana); workflow de
   deploy para `dev` e `prod`.

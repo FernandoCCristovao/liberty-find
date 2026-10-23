@@ -60,9 +60,11 @@
 ## AWS e infraestrutura
 
 - Tudo pelo Terraform em `infra/` (o `template.yaml` do SAM vale até a tarefa 1.2). No console, só
-  conta, Identity Center, orçamento e consultas.
-- Região `us-east-1`; tag `project=liberty-find` em tudo.
-- Papel do IAM com o mínimo necessário; nada de chave fixa no CI (OIDC).
+  conta, limite de gasto, orçamento e consultas.
+- Região `us-east-2`, a da conta ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)); tag
+  `project=liberty-find` em tudo.
+- Papel do IAM com o mínimo necessário; nada de chave fixa, nem na máquina (`aws login`) nem no CI
+  (OIDC, quando a conta permitir).
 - Segredos de serviços de fora da AWS no SSM Parameter Store, nunca no repositório.
 
 ## Dependências

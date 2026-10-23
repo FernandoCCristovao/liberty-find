@@ -72,6 +72,10 @@ Cada candidato é validado com uma chamada à API (`liberty probe`) e entra no r
 saúde. O índice serve só para descobrir empresas, nunca como fonte de texto de vaga. O feed da
 Workable também lista todas as empresas com vagas publicadas.
 
+A conta do projeto fica em `us-east-2`, e a política da AWS para a conta pode negar a leitura do
+índice em `us-east-1` ([ADR 0024](../decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)). Se negar, a alternativa é a
+API do índice do Common Crawl (https://index.commoncrawl.org), consultada por domínio, sem AWS.
+
 ## Política de exibição por fonte
 
 Configuração versionada, aplicada no site, nos canais e no app:

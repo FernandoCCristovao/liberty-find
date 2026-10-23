@@ -2,8 +2,8 @@
 
 Quatro camadas com contrato de dados entre elas: plataforma de dados, índice de vagas, matching e
 superfícies ([ADR 0008](decisoes/0008-arquitetura-em-camadas.md)). O núcleo roda serverless na AWS,
-região `us-east-1`; peças fora da AWS só entram com motivo registrado em ADR. Cada marco acrescenta
-uma camada sem refazer a anterior.
+região `us-east-2`, a da conta ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)); peças fora da AWS só
+entram com motivo registrado em ADR. Cada marco acrescenta uma camada sem refazer a anterior.
 
 ## Visão geral (desenho alvo)
 
@@ -116,8 +116,9 @@ O site estático fica num bucket próprio, servido pelo CloudFront. Formato de c
 - Buckets privados, com bloqueio de acesso público e criptografia padrão. Nenhuma credencial no
   código: as Lambdas usam papéis do IAM com o mínimo necessário; segredos de serviços de fora (Neon,
   Telegram, Langfuse) ficam no SSM Parameter Store.
-- Deploy pelo GitHub Actions com OIDC, sem chave fixa da AWS; acesso humano pelo IAM Identity Center
-  com MFA.
+- Acesso humano e da CLI pelo `aws login`, com credencial temporária e sem chave fixa. Deploy pelo
+  GitHub Actions com OIDC quando a conta permitir ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md));
+  até lá, deploy da máquina do mantenedor, sempre com aprovação humana.
 - Descrição de vaga é entrada não confiável: nunca vira instrução para o modelo e nunca aparece em log.
 - Dados pessoais seguem [privacidade.md](privacidade.md).
 
@@ -139,8 +140,9 @@ O site estático fica num bucket próprio, servido pelo CloudFront. Formato de c
   considera o custo projetado ([ADR 0013](decisoes/0013-extracao-v2-sinais-de-liberdade.md)). Com as
   primeiras dezenas de empresas, poucos dólares.
 - Proteções: limite de bytes por consulta no workgroup do Athena, teto de extrações e de tokens por
-  execução, expiração do bruto e dos resultados de consulta, orçamento com alerta e a regra de não
-  usar nada com custo fixo sem ADR.
+  execução, expiração do bruto e dos resultados de consulta, limite de gasto da conta no plano pago,
+  orçamento com alerta ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)) e a regra de não usar nada
+  com custo fixo sem ADR.
 
 ## Estrutura do repositório ao longo dos marcos
 

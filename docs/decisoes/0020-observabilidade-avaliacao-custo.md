@@ -1,6 +1,6 @@
 # ADR 0020: Observabilidade, avaliação contínua e proteção de custo
 
-- Status: aceita
+- Status: aceita (proteção de gasto complementada pelo [ADR 0024](0024-conta-aws-experiencia-nova-us-east-2.md))
 - Data: 2026-10-20
 
 ## Contexto

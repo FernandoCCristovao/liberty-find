@@ -1,6 +1,6 @@
 # ADR 0008: Arquitetura em camadas, nuvem AWS e monólito modular
 
-- Status: aceita
+- Status: aceita (a região foi substituída pelo [ADR 0024](0024-conta-aws-experiencia-nova-us-east-2.md))
 - Data: 2026-10-20
 - Substitui: [ADR 0001](0001-aws-serverless.md) (reafirma a AWS serverless com os dados de 2026)
 

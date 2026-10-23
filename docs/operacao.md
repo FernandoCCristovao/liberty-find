@@ -5,18 +5,25 @@ humana.
 
 ## Preparação (uma vez)
 
-1. **Conta AWS no plano pago.** Conta nova recebe os mesmos créditos nos dois planos, mas o plano
-   gratuito fecha a conta depois de 6 meses ou quando os créditos acabam; no pago, os créditos
-   valem por 12 meses e a conta continua ([camada gratuita](https://aws.amazon.com/free/faqs/)).
-2. **MFA na conta raiz** e um usuário no **IAM Identity Center**; nada de chave de acesso da raiz.
-3. **Orçamento** no AWS Budgets: US$ 10 por mês, com alerta por e-mail (depois da tarefa 1.2, ele
-   vem do Terraform).
-4. **Ferramentas:** [uv](https://docs.astral.sh/uv/), AWS CLI v2 e Terraform 1.11 ou mais novo
-   (até a tarefa 1.2, o AWS SAM CLI).
-5. **Perfil da CLI:** `aws configure sso --profile liberty-find` (região `us-east-1`).
+A conta é um projeto do cadastro novo da AWS, com região fixa em `us-east-2` e políticas geridas
+pela AWS ([ADR 0024](decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)).
+
+1. **Plano:** o gratuito não gera cobrança e cobre os serviços do Marco 1. No pago, defina em
+   https://settings.aws.com um limite de gasto mensal (a partir de US$ 20): ao chegar nele, a AWS
+   pausa o projeto em vez de cobrar mais.
+2. **Login protegido:** verificação em duas etapas no provedor de login (por exemplo, o Google) ou
+   MFA no AWS Builder ID.
+3. **Orçamento** no AWS Budgets: US$ 10 por mês, com alerta por e-mail, se a conta permitir
+   (depois da tarefa 1.2, ele vem do Terraform).
+4. **Ferramentas:** [uv](https://docs.astral.sh/uv/), AWS CLI v2 (2.32 ou mais novo, para o
+   `aws login`) e Terraform 1.11 ou mais novo (até a tarefa 1.2, o AWS SAM CLI).
+5. **Perfil da CLI**, sem chave fixa: `aws configure set region us-east-2 --profile liberty-find`
+   e `aws login --region us-east-2 --profile liberty-find`; confira com
+   `aws sts get-caller-identity --profile liberty-find`. A credencial vale 12 horas e se renova por
+   até 90 dias sem voltar ao navegador.
 6. Copie `.env.example` para `.env` e preencha `AWS_PROFILE` e `ALERT_EMAIL`.
-7. **Cota de concorrência do Lambda:** contas novas começam com cota baixa; peça o aumento no Service
-   Quotas antes de usar concorrência reservada.
+7. **Cota de concorrência do Lambda:** `aws lambda get-account-settings --profile liberty-find`
+   mostra a cota; contas novas começam baixas. Peça o aumento antes de usar concorrência reservada.
 
 **Onde guardar o repositório:** fora de pastas sincronizadas (Google Drive, OneDrive, Dropbox). A
 sincronização corrompe o `.git`; a cópia de segurança do código é o próprio GitHub.

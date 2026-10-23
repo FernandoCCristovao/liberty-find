@@ -12,12 +12,15 @@ local e no S3, relatório de saúde, CLI `liberty`, esquema e prompt v1 da extra
 
 ### [ ] 1.1 Conta AWS e repositório
 
-- Fazer: conta AWS no plano pago, MFA na raiz, usuário no IAM Identity Center e perfil da CLI, como
-  em [operacao.md](../operacao.md); orçamento de US$ 10 com alerta (manual nesta etapa); teste do
-  Nova Lite no playground do Bedrock; pedido de aumento da cota de concorrência do Lambda. Criar o
-  repositório público no GitHub (aprovação humana), com o relato privado de vulnerabilidades ligado.
-- Aceite: `aws sts get-caller-identity` mostra o usuário do Identity Center, não a raiz; orçamento
-  ativo; repositório no ar com o CI verde.
+- Fazer: conta AWS pelo cadastro novo, em `us-east-2`
+  ([ADR 0024](../decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)), com login protegido e o perfil
+  `liberty-find` na CLI pelo `aws login`, como em [operacao.md](../operacao.md); proteção de gasto
+  (plano gratuito, ou limite de gasto no pago) e orçamento de US$ 10 com alerta, se a conta
+  permitir; teste do Nova Lite no playground do Bedrock; cota de concorrência do Lambda conferida.
+  Criar o repositório público no GitHub (aprovação humana), com o relato privado de
+  vulnerabilidades ligado.
+- Aceite: `aws sts get-caller-identity --profile liberty-find` responde com credencial temporária,
+  sem chave fixa; proteção de gasto ativa; repositório no ar com o CI verde.
 
 ### [ ] 1.2 Infraestrutura em Terraform e primeiro deploy
 
@@ -29,6 +32,8 @@ não custa nada.
     e bloqueio de acesso público.
   - `infra/envs/dev/` e `infra/envs/prod/` com backend S3 (`use_lockfile = true`) e o mesmo código
     em `infra/modules/` só se houver repetição.
+  - Provider da AWS em `us-east-2`, a região da conta
+    ([ADR 0024](../decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)), com o perfil `liberty-find`.
   - Mapear o `template.yaml` recurso a recurso:
 
     | SAM | Terraform |
@@ -41,7 +46,7 @@ não custa nada.
     | `CollectErrorsAlarm` | `aws_cloudwatch_metric_alarm` |
     | `GlueDatabase` e `PostingsTable` | `aws_glue_catalog_database` (`liberty_find`) e `aws_glue_catalog_table` com projeção de partições |
     | `AthenaWorkGroup` | `aws_athena_workgroup` (`liberty-find`, limite de bytes, local dos resultados) |
-    | (novo) orçamento | `aws_budgets_budget` de US$ 10 com alertas, no lugar do orçamento manual |
+    | (novo) orçamento | `aws_budgets_budget` de US$ 10 com alertas, no lugar do orçamento manual, se a política da conta permitir |
 
   - `uv run poe package`: `uv export` sem dependências de desenvolvimento, `uv pip install --target`
     com rodas `manylinux` para arm64 e um zip por função, mais teste de que o zip importa o handler.
@@ -86,7 +91,9 @@ Para todas as fontes, no núcleo:
 - Fazer: consultar o índice do Common Crawl no Athena (procedimento em
   [fontes.md](../dados/fontes.md#descoberta-de-empresas)), num workgroup próprio com limite de
   leitura; filtrar por domínio registrado para ler pouco e conferir no console o volume lido antes de
-  repetir. A lista de candidatos fica fora do repositório (arquivo local ignorado pelo Git). Validar
+  repetir. Se a política da conta negar a leitura do índice em `us-east-1`, usar a API do índice
+  (alternativa em [fontes.md](../dados/fontes.md#descoberta-de-empresas)). A lista de candidatos
+  fica fora do repositório (arquivo local ignorado pelo Git). Validar
   com `liberty probe` e levar ao `boards.yaml` só as empresas validadas com vagas de dados ou IA
   abertas a quem mora no Brasil ou em Portugal.
 - Aceite: de 20 a 40 empresas ativas em `boards.yaml`, todas em `ok`, cada uma com a data da

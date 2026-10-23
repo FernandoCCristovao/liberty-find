@@ -23,7 +23,8 @@ de elegibilidade de 95% ou mais na avaliação da tarefa 1.6, medida como em
   recorte, uma página por vaga (campos derivados, evidências, resumo próprio e link para a vaga
   original), página de insights, página de privacidade e termos, um canal para pedir a remoção de
   uma vaga ou empresa e uma lista de espera para o matching pessoal (sem cobrança). S3 e CloudFront
-  no Terraform. Sem cookies de rastreamento.
+  no Terraform; o certificado do ACM para o domínio fica em `us-east-1`, então conferir antes se a
+  política da conta permite ([ADR 0024](../decisoes/0024-conta-aws-experiencia-nova-us-east-2.md)). Sem cookies de rastreamento.
 - Aceite: o site se atualiza sozinho todo dia; vaga fechada some na mesma atualização; a política de
   cada fonte tem teste (atribuição, link, nada de descrição completa).
 

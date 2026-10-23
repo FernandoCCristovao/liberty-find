@@ -4,7 +4,7 @@ version = 0.1
 
 [default.global.parameters]
 stack_name = "liberty-find"
-region = "us-east-1"
+region = "us-east-2"
 
 [default.build.parameters]
 cached = true

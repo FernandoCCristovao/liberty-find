@@ -1,6 +1,6 @@
 # ADR 0018: Privacidade desde o desenho (LGPD)
 
-- Status: aceita
+- Status: aceita (região do beta revista pelo [ADR 0024](0024-conta-aws-experiencia-nova-us-east-2.md))
 - Data: 2026-10-20
 
 ## Contexto

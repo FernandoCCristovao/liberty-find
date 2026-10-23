@@ -1,6 +1,7 @@
 # ADR 0016: Infraestrutura como código com Terraform
 
-- Status: aceita (migração na tarefa 1.2 do Marco 1, antes do primeiro deploy)
+- Status: aceita (migração na tarefa 1.2 do Marco 1, antes do primeiro deploy; o OIDC no CI depende
+  do [ADR 0024](0024-conta-aws-experiencia-nova-us-east-2.md))
 - Data: 2026-10-20
 - Substitui: [ADR 0004](0004-iac-aws-sam.md)
 

@@ -13,25 +13,27 @@ outro (o antigo só ganha a linha de status com o ponteiro).
 | [0005](0005-python-uv-ruff-pytest.md) | Python 3.12 com uv, ruff, mypy, pytest e poe | aceita |
 | [0006](0006-somente-apis-publicas.md) | Só APIs públicas de ATS; descrição nunca publicada | substituída pelo 0009 |
 | [0007](0007-paineis-fora-da-aws.md) | Power BI e Streamlit Community Cloud para os painéis | substituída pelo 0019 |
-| [0008](0008-arquitetura-em-camadas.md) | Arquitetura em camadas, nuvem AWS e monólito modular | aceita |
+| [0008](0008-arquitetura-em-camadas.md) | Arquitetura em camadas, nuvem AWS e monólito modular | aceita (região no 0024) |
 | [0009](0009-fontes-por-permissao.md) | Fontes por nível de permissão, com política de exibição por fonte | aceita |
 | [0010](0010-lakehouse-iceberg-dbt.md) | Lakehouse: bronze em JSON Lines, prata e ouro em Iceberg com dbt-athena | aceita |
 | [0011](0011-orquestracao-step-functions-airflow.md) | Step Functions em produção; Airflow 3 local para comparação | aceita |
-| [0012](0012-banco-de-servico-postgres.md) | Postgres no Neon, com pgvector e busca textual | aceita |
+| [0012](0012-banco-de-servico-postgres.md) | Postgres no Neon, com pgvector e busca textual | aceita (região no 0024) |
 | [0013](0013-extracao-v2-sinais-de-liberdade.md) | Extração v2: sinais de liberdade e modelo escolhido por avaliação | aceita |
 | [0014](0014-embeddings-multilingues.md) | Embeddings multilíngues escolhidos por avaliação | aceita |
 | [0015](0015-app-web-fastapi-htmx-cognito.md) | App web: FastAPI no Lambda, HTMX e Cognito | aceita |
-| [0016](0016-terraform.md) | Infraestrutura como código com Terraform | aceita |
+| [0016](0016-terraform.md) | Infraestrutura como código com Terraform | aceita (OIDC no 0024) |
 | [0017](0017-licenca-fair-source.md) | Licença FSL-1.1-ALv2 e o que fica fora do repositório | aceita |
-| [0018](0018-privacidade-desde-o-desenho.md) | Privacidade desde o desenho (LGPD) | aceita |
+| [0018](0018-privacidade-desde-o-desenho.md) | Privacidade desde o desenho (LGPD) | aceita (região no 0024) |
 | [0019](0019-superficies-publicas.md) | Site estático, Telegram e newsletter; Streamlit só interno | aceita |
-| [0020](0020-observabilidade-avaliacao-custo.md) | Observabilidade, avaliação contínua e proteção de custo | aceita |
+| [0020](0020-observabilidade-avaliacao-custo.md) | Observabilidade, avaliação contínua e proteção de custo | aceita (gasto no 0024) |
 | [0021](0021-fora-do-mvp.md) | Tecnologias deliberadamente fora do MVP | aceita |
 | [0022](0022-assistente-e-mcp-com-aprovacao.md) | Assistente e MCP, com toda ação externa aprovada pelo usuário | aceita |
 | [0023](0023-taxonomia-de-competencias-esco.md) | Taxonomia de competências: ESCO com extensão própria | aceita |
+| [0024](0024-conta-aws-experiencia-nova-us-east-2.md) | Conta AWS na experiência nova de projetos, em us-east-2 | aceita |
 
-Próximos ADRs previstos: hospedagem do MCP remoto (Marco 6) e, se o gatilho disparar, qualquer item
-do [ADR 0021](0021-fora-do-mvp.md).
+Próximos ADRs previstos: o caminho do deploy pelo CI sem chave fixa (antes da tarefa 2.5), a
+hospedagem do MCP remoto (Marco 6) e, se o gatilho disparar, qualquer item do
+[ADR 0021](0021-fora-do-mvp.md).
 
 ## Como decidir
 
